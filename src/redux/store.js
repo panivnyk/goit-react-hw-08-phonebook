@@ -9,10 +9,13 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { contactsSlice } from './contactsSlice';
+import { contactsReducer } from './contactsSlice';
 
 export const store = configureStore({
-  reducer: { contacts: contactsSlice.reducer },
+  reducer: {
+    contacts: contactsReducer,
+  },
+
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {

@@ -6,7 +6,7 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 
 import { Div, Header, PContact, Section, Message } from './App.styled';
-import { addContacts, updFilter, delContact } from 'redux/contactsSlice';
+import { addContact, delContact, updFilter } from 'redux/contactsSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const App = () => {
     const dublicateContact = findDublicate(contact, contactsList);
     dublicateContact
       ? alert(`${contact.name} or ${contact.number} is already in contacts`)
-      : dispatch(addContacts({ ...values, id: nanoid() }));
+      : dispatch(addContact({ ...values, id: nanoid() }));
 
     resetForm();
   };
