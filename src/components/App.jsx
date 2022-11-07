@@ -4,13 +4,15 @@ import { nanoid } from 'nanoid';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { getContacts } from 'redux/selectors';
 
 import { Div, Header, PContact, Section, Message } from './App.styled';
 import { addContact, delContact, updFilter } from 'redux/contactsSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { contactsList, filter } = useSelector(state => state.contacts);
+
+  const { contactsList, filter } = useSelector(getContacts);
 
   const handleInput = (values, { resetForm }) => {
     const { name, number } = values;
