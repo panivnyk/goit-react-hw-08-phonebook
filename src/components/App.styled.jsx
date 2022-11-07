@@ -21,9 +21,3 @@ export const Section = styled.section`
   width: 650px;
   font-size: 20px;
 `;
-
-export const Message = styled.p`
-  margin-left: 20px;
-  font-size: 16px;
-  font-weight: 400;
-`;

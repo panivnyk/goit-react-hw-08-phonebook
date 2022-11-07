@@ -27,6 +27,7 @@ export const ContactList = () => {
 
   return (
     <Ul>
+      {contacts.length === 0 && <p>There is not any contacts</p>}
       {contacts.map(({ name, number, id }) => {
         return (
           <Li key={id}>
