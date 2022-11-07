@@ -1,5 +1,9 @@
-import { PropTypes } from 'prop-types';
 import { Formik } from 'formik';
+import { nanoid } from 'nanoid';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
 import {
   LabelName,
@@ -13,9 +17,34 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const { contactsList } = useSelector(getContacts);
+
+  const handleInput = (values, { resetForm }) => {
+    const { name, number } = values;
+    const contact = {
+      name,
+      number,
+    };
+    const dublicateContact = findDublicate(contact, contactsList);
+    dublicateContact
+      ? alert(`${contact.name} or ${contact.number} is already in contacts`)
+      : dispatch(addContact({ ...values, id: nanoid() }));
+
+    resetForm();
+  };
+
+  const findDublicate = (contact, contactsList) => {
+    return contactsList.find(
+      item =>
+        item.name.toLowerCase() === contact.name.toLowerCase() ||
+        item.number === contact.number
+    );
+  };
+
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={initialValues} onSubmit={handleInput}>
       <FormContact autoComplete="on">
         <LabelName htmlFor="name">
           Name
@@ -41,8 +70,4 @@ export const ContactForm = ({ onSubmit }) => {
       </FormContact>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
