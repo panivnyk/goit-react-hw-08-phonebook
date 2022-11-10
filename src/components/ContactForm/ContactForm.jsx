@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 import {
   LabelName,
@@ -19,7 +19,7 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const { contactsList } = useSelector(getContacts);
+  const { contactsList } = useSelector(selectContacts);
 
   const handleInput = (values, { resetForm }) => {
     const { name, number } = values;
