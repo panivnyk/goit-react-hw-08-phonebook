@@ -21,3 +21,8 @@ export const Section = styled.section`
   width: 650px;
   font-size: 20px;
 `;
+
+export const Loading = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+`;

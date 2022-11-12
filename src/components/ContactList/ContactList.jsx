@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 // import { delContact } from 'redux/contactsSlice';
-import { delContact } from 'redux/operations';
+import { deleteContact } from 'redux/operations';
 import { selectContacts, selectFilter } from 'redux/selectors';
+
+// import { fetchContacts } from 'redux/operations';
 
 import {
   Ul,
@@ -22,8 +24,8 @@ export const ContactList = () => {
     );
   };
 
-  const deleteContact = contactId => {
-    dispatch(delContact(contactId));
+  const deleteItem = contactId => {
+    dispatch(deleteContact(contactId));
   };
   const contacts = getFilterContacts();
 
@@ -35,7 +37,7 @@ export const ContactList = () => {
           <Li key={id}>
             <PContact>
               {name}: {number}
-              <Button type="button" onClick={() => deleteContact(id)}>
+              <Button type="button" onClick={() => deleteItem(id)}>
                 Delete
               </Button>
             </PContact>
