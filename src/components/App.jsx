@@ -26,24 +26,21 @@ export const App = () => {
         <ContactForm />
       </Section>
       <PContact>Contacts</PContact>
-      <Filter />
-
       {isLoading && !error && (
         <Loading>
           <Watch
-            height="25"
-            width="25"
-            radius="35"
+            height="80"
+            width="80"
+            radius="48"
             color="grey"
             ariaLabel="watch-loading"
             wrapperStyle={{}}
             wrapperClassName=""
             visible={true}
           />
-          Request in progress...
         </Loading>
       )}
-
+      <Filter />
       <ContactList />
     </Div>
   );

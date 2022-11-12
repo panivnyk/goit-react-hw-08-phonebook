@@ -1,11 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
-const handlePending = state => {
+const extraActions = [fetchContacts, addContact, deleteContact];
+const getActionsWithType = type => extraActions.map(action => action[type]);
+
+const fetchContactsSuccesReducer = (state, action) => {
+  state.contactsList = action.payload;
+};
+
+const addContactsSuccesReducer = (state, action) => {
+  state.contactsList.push(action.payload);
+};
+
+const deleteContactsSuccesReducer = (state, action) => {
+  const index = state.contactsList.findIndex(
+    contact => contact.id === action.payload.id
+  );
+  state.contactsList.splice(index, 1);
+};
+
+const anySuccesReducer = state => {
+  state.isLoading = false;
+  state.error = null;
+};
+
+const anyPendingReducer = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
+const anyRejectedReducer = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
@@ -20,38 +43,20 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
 
-  extraReducers: {
-    [fetchContacts.pending]: handlePending,
-
-    [fetchContacts.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.contactsList = action.payload;
-    },
-    [fetchContacts.rejected]: handleRejected,
-
-    [addContact.pending]: handlePending,
-
-    [addContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-
-      state.contactsList.push(action.payload);
-    },
-
-    [addContact.rejected]: handleRejected,
-    [deleteContact.pending]: handlePending,
-
-    [deleteContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.contactsList.findIndex(
-        contact => contact.id === action.payload.id
-      );
-      state.contactsList.splice(index, 1);
-    },
-    [deleteContact.rejected]: handleRejected,
-  },
+  extraReducers: builder =>
+    builder
+      // fulfilled
+      .addCase(fetchContacts.fulfilled, fetchContactsSuccesReducer)
+      .addCase(addContact.fulfilled, addContactsSuccesReducer)
+      .addCase(deleteContact.fulfilled, deleteContactsSuccesReducer)
+      .addMatcher(isAnyOf(...getActionsWithType('fulfilled')), anySuccesReducer)
+      // pending
+      .addMatcher(isAnyOf(...getActionsWithType('pending')), anyPendingReducer)
+      // rejected
+      .addMatcher(
+        isAnyOf(...getActionsWithType('rejected')),
+        anyRejectedReducer
+      ),
 });
 
 export const contactsReducer = contactsSlice.reducer;

@@ -22,10 +22,10 @@ export const Section = styled.section`
   font-size: 20px;
 `;
 
-export const Loading = styled.b`
+export const Loading = styled.div`
   display: flex;
   align-items: center;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 20px;
+  margin-left: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
