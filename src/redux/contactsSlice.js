@@ -8,6 +8,8 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     contactsList: contactsInitialState,
+    isLoading: false,
+    error: null,
   },
   reducers: {
     addContact(state, action) {
