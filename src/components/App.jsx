@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
+import { Blocks } from 'react-loader-spinner';
 
 import { Div, Header, PContact, Section, Loading } from './App.styled';
 
@@ -27,7 +28,19 @@ export const App = () => {
       <PContact>Contacts</PContact>
       <Filter />
 
-      {isLoading && !error && <Loading>Request in progress...</Loading>}
+      {isLoading && !error && (
+        <Loading>
+          <Blocks
+            visible={true}
+            height="40"
+            width="40"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+          />
+          Request in progress...
+        </Loading>
+      )}
 
       <ContactList />
     </Div>

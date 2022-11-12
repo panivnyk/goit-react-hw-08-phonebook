@@ -23,6 +23,9 @@ export const Section = styled.section`
 `;
 
 export const Loading = styled.p`
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 700;
+  padding: 20px;
 `;

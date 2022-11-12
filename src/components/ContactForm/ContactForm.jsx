@@ -1,8 +1,6 @@
 import { Formik } from 'formik';
-// import { nanoid } from 'nanoid';
 
 import { useSelector, useDispatch } from 'react-redux';
-// import { addContact } from 'redux/contactsSlice';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 
@@ -15,24 +13,17 @@ import {
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  // const { contactsList } = useSelector(selectContacts);
   const { contactsList } = useSelector(selectContacts);
-  console.log(contactsList);
 
   const handleInput = (values, { resetForm }) => {
-    // const { name, number } = values;
-    // const contact = {
-    //   name,
-    //   number,
-    // };
     const dublicateContact = findDublicate(values, contactsList);
     dublicateContact
-      ? alert(`${values.name} or ${values.number} is already in contacts`)
+      ? alert(`${values.name} or ${values.phone} is already in contacts`)
       : dispatch(addContact(values));
 
     resetForm();
@@ -42,7 +33,7 @@ export const ContactForm = () => {
     return contactsList.find(
       item =>
         item.name.toLowerCase() === contact.name.toLowerCase() ||
-        item.number === contact.number
+        item.phone === contact.phone
     );
   };
 
@@ -59,11 +50,11 @@ export const ContactForm = () => {
             placeholder="Enter name"
           />
         </LabelName>
-        <LabelName htmlFor="number">
+        <LabelName htmlFor="phone">
           Number
           <Input
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             placeholder="Enter number"
