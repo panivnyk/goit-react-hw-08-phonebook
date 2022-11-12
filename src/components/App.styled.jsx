@@ -22,7 +22,7 @@ export const Section = styled.section`
   font-size: 20px;
 `;
 
-export const Loading = styled.p`
+export const Loading = styled.b`
   display: flex;
   align-items: center;
   font-size: 16px;

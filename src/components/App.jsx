@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
-import { Blocks } from 'react-loader-spinner';
+import { Watch } from 'react-loader-spinner';
 
 import { Div, Header, PContact, Section, Loading } from './App.styled';
 
@@ -30,13 +30,15 @@ export const App = () => {
 
       {isLoading && !error && (
         <Loading>
-          <Blocks
-            visible={true}
-            height="40"
-            width="40"
-            ariaLabel="blocks-loading"
+          <Watch
+            height="25"
+            width="25"
+            radius="35"
+            color="grey"
+            ariaLabel="watch-loading"
             wrapperStyle={{}}
-            wrapperClass="blocks-wrapper"
+            wrapperClassName=""
+            visible={true}
           />
           Request in progress...
         </Loading>
