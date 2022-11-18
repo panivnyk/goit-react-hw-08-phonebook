@@ -20,7 +20,7 @@ export const ContactEditor = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Input name="text" />
-      <Button type="submit">Add contactk</Button>
+      <Button type="submit">Add contact</Button>
     </Form>
   );
 };
