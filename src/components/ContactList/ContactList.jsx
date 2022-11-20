@@ -30,11 +30,11 @@ export const ContactList = () => {
   return (
     <Ul>
       {contacts.length === 0 && <p>There is not any contacts</p>}
-      {contacts.map(({ name, phone, id }) => {
+      {contacts.map(({ name, number, id }) => {
         return (
           <Li key={id}>
             <PContact>
-              {name}: {phone}
+              {name}: {number}
               <Button type="button" onClick={() => deleteItem(id)}>
                 Delete
               </Button>

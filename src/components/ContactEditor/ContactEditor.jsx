@@ -1,26 +1,43 @@
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
-import { Form, Input, Button } from './ContactEditor.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+
+import { fetchContacts } from 'redux/contacts/operations';
+
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { Filter } from 'components/Filter/Filter';
+import { Loader } from 'components/Loader/Loader';
+
+import { Div, Header, PContact, Section } from './ContactEditor.styled';
 
 export const ContactEditor = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const text = form.elements.text.value;
-    if (text !== '') {
-      dispatch(addContact(text));
-      form.reset();
-      return;
-    }
-    alert('Contact cannot be empty. Enter some text!');
-  };
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  //   return (
+  //     <Form onSubmit={handleSubmit}>
+  //       <Input name="text" />
+  //       <Button type="submit">Add contact</Button>
+  //     </Form>
+  //   );
+  // };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input name="text" />
-      <Button type="submit">Add contact</Button>
-    </Form>
+    <Div>
+      <Header>Phonebook</Header>
+
+      <Section>
+        <ContactForm />
+      </Section>
+      <PContact>Contacts</PContact>
+      {isLoading && !error && <Loader />}
+      <Filter />
+    </Div>
   );
 };
