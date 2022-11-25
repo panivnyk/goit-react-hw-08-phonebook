@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Form = styled.form`
-  display: flex;
   width: 100%;
   gap: 4px;
   margin-bottom: 12px;
 `;
 export const Input = styled.input`
-  flex-grow: 1;
   padding: 8px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
@@ -35,25 +33,25 @@ export const Button = styled.button`
   }
 `;
 
-export const Div = styled.div`
-  padding: 20px;
-`;
+export const Div = styled.div``;
 
 export const Header = styled.p`
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 0 10px 20px;
+  display: flex;
+  font-size: 14px;
+  text-transform: uppercase;
+  justify-content: center;
+  margin: 0;
 `;
 
 export const PContact = styled.p`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  margin: 40px 0px 20px 30px;
 `;
 export const Section = styled.section`
-  border: 1px solid;
   display: flex;
-  flex-direction: column;
-  width: 650px;
+  flex-wrap: wrap;
+  justify-content: center;
   font-size: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
 `;

@@ -15,24 +15,25 @@ export const RegisterForm = () => {
         password: form.elements.password.value,
       })
     );
-    form.reset();
   };
 
   return (
-    <Form onSubmit={handleSubmit} autoComplete="off">
-      <Label>
-        Username
-        <input type="text" name="name" />
-      </Label>
-      <Label>
-        Email
-        <input type="email" name="email" />
-      </Label>
-      <Label>
-        Password
-        <input type="password" name="password" />
-      </Label>
-      <button type="submit">Register</button>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
+          Username
+          <input type="text" name="name" />
+        </Label>
+        <Label>
+          Email
+          <input type="email" name="email" />
+        </Label>
+        <Label>
+          Password
+          <input type="password" name="password" />
+        </Label>
+        <button type="submit">Register</button>
+      </Form>
+    </>
   );
 };

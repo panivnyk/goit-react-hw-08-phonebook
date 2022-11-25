@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
+import { Button } from '@mui/material';
 import { Form, Field, ErrorMessage } from 'formik';
 
 export const FormContact = styled(Form)`
-  padding: 20px;
-  width: 500px;
+  display: flex;
+  flex-direction: row;
 `;
 export const LabelName = styled.label`
   text-align: left;
   margin-bottom: 20px;
+  margin-left: 5px;
 `;
 export const Input = styled(Field)`
   padding: 3px;
@@ -17,7 +19,6 @@ export const Input = styled(Field)`
   margin: 0;
 `;
 export const Error = styled(ErrorMessage)`
-  /* position: absolute; */
   margin-top: -30px;
   margin-left: 320px;
   width: 300px;
@@ -26,8 +27,10 @@ export const Error = styled(ErrorMessage)`
   font-size: 16px;
   color: red;
 `;
-export const Button = styled.button`
-  width: 90px;
-  text-align: left;
-  margin: 0;
+export const AddButton = styled(Button)`
+  border-color: black;
+  background: ada9a97a;
+  color: black;
+  padding: 14px 14px;
+  margin-left: 5px;
 `;

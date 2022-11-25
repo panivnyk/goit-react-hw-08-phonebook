@@ -8,7 +8,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { Loader } from 'components/Loader/Loader';
 
-import { Div, Header, PContact, Section } from './ContactEditor.styled';
+import { Div, Header, Section } from './ContactEditor.styled';
 
 export const ContactEditor = () => {
   const dispatch = useDispatch();
@@ -20,24 +20,14 @@ export const ContactEditor = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  //   return (
-  //     <Form onSubmit={handleSubmit}>
-  //       <Input name="text" />
-  //       <Button type="submit">Add contact</Button>
-  //     </Form>
-  //   );
-  // };
-
   return (
     <Div>
-      <Header>Phonebook</Header>
-
+      <Header>add new contact:</Header>
       <Section>
+        <Filter />
         <ContactForm />
+        {isLoading && !error && <Loader />}
       </Section>
-      <PContact>Contacts</PContact>
-      {isLoading && !error && <Loader />}
-      <Filter />
     </Div>
   );
 };
