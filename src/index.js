@@ -15,8 +15,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <StyledEngineProvider injectFirst>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="goit-react-hw-08-phonebook">
-            {/* <BrowserRouter> */}
+          {/* <BrowserRouter basename="goit-react-hw-08-phonebook"> */}
+          <BrowserRouter>
             <App />
           </BrowserRouter>
         </PersistGate>
