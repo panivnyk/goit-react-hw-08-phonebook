@@ -19,7 +19,7 @@ export const Filter = () => {
       type="text"
       name="filter"
       label="Search in contacts"
-      placeholder="Search in contacts"
+      placeholder="Type some text for search"
       value={filter}
       onChange={changeFilter}
     />
